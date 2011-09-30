@@ -12,13 +12,12 @@
 
 # OS or Editor folders
 .DS_Store
-Thumbs.db
 .cache
 .project
 .settings
 .tmproj
-*.esproj
 nbproject
+Thumbs.db
 
 # Dreamweaver added files
 _notes
@@ -32,4 +31,10 @@ dwsync.xml
 .hg
 .svn
 .CVS
+intermediate
+publish
 .idea
+
+# build script local files
+build/buildinfo.properties
+build/config/buildinfo.properties
