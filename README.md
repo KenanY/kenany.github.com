@@ -3,7 +3,9 @@
 Uses: 
 
  - [HTML5 Boilerplate][]
-  - Which, in itself, uses [normalize.css][], [jQuery][], and [Modernizer][]
+  - [normalize.css][]
+  - [jQuery][]
+  - [Modernizer][]
  - [Pagify.js][]
  - [Google Analytics]
  - [DuckDuckGo][] as the [404 page search bar](https://github.com/KenanY/kenany.github.com/blob/master/404.html#L32)
