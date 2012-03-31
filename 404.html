@@ -13,11 +13,13 @@
     <meta http-equiv="cleartype" content="on">
     <meta http-equiv="imagetoolbar" content="false">
     <style>
+        * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
         html {
             font-size: 100%;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
-            font-family: sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
         body {
             margin: 0;
@@ -25,6 +27,9 @@
         p {
             margin: 1em 0;
         }
+
+        ::-moz-selection { background: #ff9; color: #222; text-shadow: none; }
+        ::selection { background: #ff9; color: #222; text-shadow: none; }
     </style>
 </head>
 <body>

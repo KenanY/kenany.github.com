@@ -12,3 +12,6 @@ body {
 p {
     margin: 1em 0;
 }
+
+::-moz-selection { background: #ff9; color: #222; text-shadow: none; }
+::selection { background: #ff9; color: #222; text-shadow: none; }
