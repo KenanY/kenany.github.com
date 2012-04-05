@@ -57,7 +57,7 @@ table{border-collapse:collapse;border-spacing:0}
 	$main
 \*------------------------------------*/
 a, a:visited {
-    font-color: hsl(207, 74%, 36%);
+    color: hsl(207, 74%, 36%);
 }
 a:hover {
     color: hsl(207, 99%, 46%);
