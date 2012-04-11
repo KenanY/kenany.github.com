@@ -155,8 +155,8 @@ li {
     90% { top: 53%; }
     100% { top: 50%; }
 }
-::-moz-selection { background: #ff9; color: #222; text-shadow: none; }
-::selection { background: #ff9; color: #222; text-shadow: none; }
+::-moz-selection { background: #6BFE58; color: #fff; text-shadow: none; }
+::selection { background: #6BFE58; color: #fff; text-shadow: none; }
 
 /*------------------------------------*\
     $PRINT
