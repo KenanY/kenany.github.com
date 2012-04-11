@@ -1,7 +1,7 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /*------------------------------------*\
-	$normalize
+	$NORMALIZE
 \*------------------------------------*/
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
@@ -54,7 +54,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 
 /*------------------------------------*\
-	$main
+	$MAIN
 \*------------------------------------*/
 body {
     font: 22px/32px "Helvetica Neue", sans-serif;
@@ -152,7 +152,7 @@ div {
 ::selection { background: #ff9; color: #222; text-shadow: none; }
 
 /*------------------------------------*\
-	$print
+	$PRINT
 \*------------------------------------*/
 @media print {
     * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
