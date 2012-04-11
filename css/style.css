@@ -97,11 +97,11 @@ div {
 	width: 600px;
 	height: 300px;
 	margin: -150px 0 0 -300px;
-	-webkit-animation: slideDown 3s;
-	   -moz-animation: slideDown 3s;
-	    -ms-animation: slideDown 3s;
-	     -o-animation: slideDown 3s;
-	        animation: slideDown 3s;
+	-webkit-animation: slideDown 1s;
+	   -moz-animation: slideDown 1s;
+	    -ms-animation: slideDown 1s;
+	     -o-animation: slideDown 1s;
+	        animation: slideDown 1s;
 }
 
 /* Webkit */
