@@ -56,11 +56,97 @@ table{border-collapse:collapse;border-spacing:0}
 /*------------------------------------*\
 	$main
 \*------------------------------------*/
+body {
+    font: 22px/32px "Helvetica Neue", sans-serif;
+    width: 600px;
+    margin: 0 auto;
+}
+h1, div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+h2 {
+    font-size: 40px;
+}
+h2, p {
+    margin-bottom: 22px;
+}
+a {
+	display: inline-block;
+	position: relative;
+	-webkit-transition: color .25s, -webkit-transform .25s;
+	   -moz-transition: color .25s, -moz-transform .25s;
+	    -ms-transition: color .25s, -ms-transform .25s;
+	     -o-transition: color .25s, -o-transform .25s;
+	        transition: color .25s, transform .25s;
+}
 a, a:visited {
     color: hsl(207, 74%, 36%);
 }
 a:hover {
     color: hsl(207, 99%, 46%);
+    -webkit-transform: scale(1.15);
+       -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+         -o-transform: scale(1.15);
+            transform: scale(1.15);
+    z-index: 10000000;
+}
+div {
+	width: 600px;
+	height: 300px;
+	margin: -150px 0 0 -300px;
+	-webkit-animation: slideDown 3s;
+	   -moz-animation: slideDown 3s;
+	    -ms-animation: slideDown 3s;
+	     -o-animation: slideDown 3s;
+	        animation: slideDown 3s;
+}
+
+/* Webkit */
+@-webkit-keyframes slideDown {
+	0% { top: -50%; }
+	80% { top: -50%; }
+	80.1% { top: 48%; }
+	90% { top: 53%; }
+	100% { top: 50%; }
+}
+
+/* Mozilla */
+@-moz-keyframes slideDown {
+	0% { top: -50%; }
+	80% { top: -50%; }
+	80.1% { top: 48%; }
+	90% { top: 53%; }
+	100% { top: 50%; }
+}
+
+/* Microsoft */
+@-ms-keyframes slideDown {
+	0% { top: -50%; }
+	80% { top: -50%; }
+	80.1% { top: 48%; }
+	90% { top: 53%; }
+	100% { top: 50%; }
+}
+
+/* Opera */
+@-o-keyframes slideDown {
+	0% { top: -50%; }
+	80% { top: -50%; }
+	80.1% { top: 48%; }
+	90% { top: 53%; }
+	100% { top: 50%; }
+}
+
+/* No prefixes */
+@keyframes slideDown {
+	0% { top: -50%; }
+	80% { top: -50%; }
+	80.1% { top: 48%; }
+	90% { top: 53%; }
+	100% { top: 50%; }
 }
 ::-moz-selection { background: #ff9; color: #222; text-shadow: none; }
 ::selection { background: #ff9; color: #222; text-shadow: none; }
