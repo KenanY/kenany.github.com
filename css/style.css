@@ -57,7 +57,7 @@ table{border-collapse:collapse;border-spacing:0}
     $MAIN
 \*------------------------------------*/
 body {
-    font: 22px/32px "Helvetica Neue", sans-serif;
+    font: 22px/32px "Helvetica Neue", Helvetica, Arial, Helmet, Freesans, sans-serif;
     width: 600px;
     margin: 0 auto;
 }
