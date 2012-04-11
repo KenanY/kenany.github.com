@@ -1,7 +1,7 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /*------------------------------------*\
-	$NORMALIZE
+    $NORMALIZE
 \*------------------------------------*/
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
@@ -54,7 +54,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 
 /*------------------------------------*\
-	$MAIN
+    $MAIN
 \*------------------------------------*/
 body {
     font: 22px/32px "Helvetica Neue", sans-serif;
@@ -73,13 +73,13 @@ h2, p {
     margin-bottom: 22px;
 }
 a {
-	display: inline-block;
-	position: relative;
-	-webkit-transition: color .25s, -webkit-transform .25s;
-	   -moz-transition: color .25s, -moz-transform .25s;
-	    -ms-transition: color .25s, -ms-transform .25s;
-	     -o-transition: color .25s, -o-transform .25s;
-	        transition: color .25s, transform .25s;
+    display: inline-block;
+    position: relative;
+    -webkit-transition: color .25s, -webkit-transform .25s;
+       -moz-transition: color .25s, -moz-transform .25s;
+        -ms-transition: color .25s, -ms-transform .25s;
+         -o-transition: color .25s, -o-transform .25s;
+            transition: color .25s, transform .25s;
 }
 a, a:visited {
     color: hsl(207, 74%, 36%);
@@ -94,65 +94,68 @@ a:hover {
     z-index: 10000000;
 }
 div {
-	width: 600px;
-	height: 300px;
-	margin: -150px 0 0 -300px;
-	-webkit-animation: slideDown 1s;
-	   -moz-animation: slideDown 1s;
-	    -ms-animation: slideDown 1s;
-	     -o-animation: slideDown 1s;
-	        animation: slideDown 1s;
+    width: 600px;
+
+    /* Heights shouldn't be applied to elements, but I stink at this stuff :( */
+    height: 300px;
+
+    margin: -150px 0 0 -300px;
+    -webkit-animation: slideDown 1s;
+       -moz-animation: slideDown 1s;
+        -ms-animation: slideDown 1s;
+         -o-animation: slideDown 1s;
+            animation: slideDown 1s;
 }
 
 /* Webkit */
 @-webkit-keyframes slideDown {
-	0% { top: -50%; }
-	80% { top: -50%; }
-	80.1% { top: 48%; }
-	90% { top: 53%; }
-	100% { top: 50%; }
+    0% { top: -50%; }
+    80% { top: -50%; }
+    80.1% { top: 48%; }
+    90% { top: 53%; }
+    100% { top: 50%; }
 }
 
 /* Mozilla */
 @-moz-keyframes slideDown {
-	0% { top: -50%; }
-	80% { top: -50%; }
-	80.1% { top: 48%; }
-	90% { top: 53%; }
-	100% { top: 50%; }
+    0% { top: -50%; }
+    80% { top: -50%; }
+    80.1% { top: 48%; }
+    90% { top: 53%; }
+    100% { top: 50%; }
 }
 
 /* Microsoft */
 @-ms-keyframes slideDown {
-	0% { top: -50%; }
-	80% { top: -50%; }
-	80.1% { top: 48%; }
-	90% { top: 53%; }
-	100% { top: 50%; }
+    0% { top: -50%; }
+    80% { top: -50%; }
+    80.1% { top: 48%; }
+    90% { top: 53%; }
+    100% { top: 50%; }
 }
 
 /* Opera */
 @-o-keyframes slideDown {
-	0% { top: -50%; }
-	80% { top: -50%; }
-	80.1% { top: 48%; }
-	90% { top: 53%; }
-	100% { top: 50%; }
+    0% { top: -50%; }
+    80% { top: -50%; }
+    80.1% { top: 48%; }
+    90% { top: 53%; }
+    100% { top: 50%; }
 }
 
 /* No prefixes */
 @keyframes slideDown {
-	0% { top: -50%; }
-	80% { top: -50%; }
-	80.1% { top: 48%; }
-	90% { top: 53%; }
-	100% { top: 50%; }
+    0% { top: -50%; }
+    80% { top: -50%; }
+    80.1% { top: 48%; }
+    90% { top: 53%; }
+    100% { top: 50%; }
 }
 ::-moz-selection { background: #ff9; color: #222; text-shadow: none; }
 ::selection { background: #ff9; color: #222; text-shadow: none; }
 
 /*------------------------------------*\
-	$PRINT
+    $PRINT
 \*------------------------------------*/
 @media print {
     * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
