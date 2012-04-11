@@ -57,12 +57,28 @@ table{border-collapse:collapse;border-spacing:0}
     $MAIN
 \*------------------------------------*/
 html {
-    background: #fff;
+    background: hsl(0, 100%, 100%);
 }
 body {
     font: 22px/32px "Helvetica Neue", Helvetica, Arial, Helmet, Freesans, sans-serif;
     width: 600px;
     margin: 0 auto;
+}
+div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 600px;
+
+    /* Heights shouldn't be applied to elements, but I stink at this stuff :( */
+    height: 300px;
+
+    margin: -150px 0 0 -300px;
+    -webkit-animation: slideDown 1s;
+       -moz-animation: slideDown 1s;
+        -ms-animation: slideDown 1s;
+         -o-animation: slideDown 1s;
+            animation: slideDown 1s;
 }
 h2 {
     font-size: 40px;
@@ -91,21 +107,8 @@ a:hover {
             transform: scale(1.15);
     z-index: 10000000;
 }
-div {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 600px;
-
-    /* Heights shouldn't be applied to elements, but I stink at this stuff :( */
-    height: 300px;
-
-    margin: -150px 0 0 -300px;
-    -webkit-animation: slideDown 1s;
-       -moz-animation: slideDown 1s;
-        -ms-animation: slideDown 1s;
-         -o-animation: slideDown 1s;
-            animation: slideDown 1s;
+li {
+    color: hsl(0, 0%, 40%);
 }
 
 /* Webkit */
