@@ -115,6 +115,9 @@ a:hover {
 li {
     color: hsl(0, 0%, 40%);
 }
+.container {
+    padding: 0 20px;
+}
 
 /* Webkit */
 @-webkit-keyframes slideDown {
