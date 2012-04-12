@@ -160,6 +160,7 @@ li {
     90% { top: 53%; }
     100% { top: 50%; }
 }
+.chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 ::-moz-selection { background: #55FF00; color: #fff; text-shadow: none; }
 ::selection { background: #55FF00; color: #fff; text-shadow: none; }
 
