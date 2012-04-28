@@ -168,6 +168,14 @@ li {
 ::selection { background: #55FF00; color: #fff; text-shadow: none; }
 
 /*------------------------------------*\
+    $MOBILE
+\*------------------------------------*/
+@media only screen and (max-width: 767px) {		
+    body { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; width: 100%; min-width: 0; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+    .container { min-width: 0; margin-left: 0; margin-right: 0; }
+}
+
+/*------------------------------------*\
     $PRINT
 \*------------------------------------*/
 @media print {
