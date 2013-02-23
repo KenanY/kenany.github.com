@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "necolas/normalize.css": "*",
+    "component/jquery": "*",
+    "component/relative-date": "*",
     "component/simple-grid": "*",
     "LearnBoost/jsonp": "*",
-    "matthewp/text": "*",
     "manuelstofer/each": "*",
-    "component/relative-date": "*",
-    "component/jquery": "*"
+    "matthewp/text": "*",
+    "necolas/normalize.css": "*"
   }
 }
