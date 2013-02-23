@@ -5,7 +5,7 @@
       relative = require('component-relative-date'),
       $        = require('component-jquery');
 
-  function getRepoLang(repo) {
+  var getRepoLang = function(repo) {
     if (repo.language) {
       return repo.language;
     }
