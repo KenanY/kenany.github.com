@@ -1,4 +1,5 @@
 {
+  "name": "kenany.github.com",
   "dependencies": {
     "component/dom": "*",
     "component/relative-date": "*",
