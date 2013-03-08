@@ -206,324 +206,6 @@ require.relative = function(parent) {
 
   return localRequire;
 };
-
-
-require.register("visionmedia-debug/index.js", function(exports, require, module){
-if ('undefined' == typeof window) {
-  module.exports = require('./lib/debug');
-} else {
-  module.exports = require('./debug');
-}
-
-});
-require.register("visionmedia-debug/debug.js", function(exports, require, module){
-
-/**
- * Expose `debug()` as the module.
- */
-
-module.exports = debug;
-
-/**
- * Create a debugger with the given `name`.
- *
- * @param {String} name
- * @return {Type}
- * @api public
- */
-
-function debug(name) {
-  if (!debug.enabled(name)) return function(){};
-
-  return function(fmt){
-    var curr = new Date;
-    var ms = curr - (debug[name] || curr);
-    debug[name] = curr;
-
-    fmt = name
-      + ' '
-      + fmt
-      + ' +' + debug.humanize(ms);
-
-    // This hackery is required for IE8
-    // where `console.log` doesn't have 'apply'
-    window.console
-      && console.log
-      && Function.prototype.apply.call(console.log, console, arguments);
-  }
-}
-
-/**
- * The currently active debug mode names.
- */
-
-debug.names = [];
-debug.skips = [];
-
-/**
- * Enables a debug mode by name. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} name
- * @api public
- */
-
-debug.enable = function(name) {
-  try {
-    localStorage.debug = name;
-  } catch(e){}
-
-  var split = (name || '').split(/[\s,]+/)
-    , len = split.length;
-
-  for (var i = 0; i < len; i++) {
-    name = split[i].replace('*', '.*?');
-    if (name[0] === '-') {
-      debug.skips.push(new RegExp('^' + name.substr(1) + '$'));
-    }
-    else {
-      debug.names.push(new RegExp('^' + name + '$'));
-    }
-  }
-};
-
-/**
- * Disable debug output.
- *
- * @api public
- */
-
-debug.disable = function(){
-  debug.enable('');
-};
-
-/**
- * Humanize the given `ms`.
- *
- * @param {Number} m
- * @return {String}
- * @api private
- */
-
-debug.humanize = function(ms) {
-  var sec = 1000
-    , min = 60 * 1000
-    , hour = 60 * min;
-
-  if (ms >= hour) return (ms / hour).toFixed(1) + 'h';
-  if (ms >= min) return (ms / min).toFixed(1) + 'm';
-  if (ms >= sec) return (ms / sec | 0) + 's';
-  return ms + 'ms';
-};
-
-/**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
-
-debug.enabled = function(name) {
-  for (var i = 0, len = debug.skips.length; i < len; i++) {
-    if (debug.skips[i].test(name)) {
-      return false;
-    }
-  }
-  for (var i = 0, len = debug.names.length; i < len; i++) {
-    if (debug.names[i].test(name)) {
-      return true;
-    }
-  }
-  return false;
-};
-
-// persist
-
-if (window.localStorage) debug.enable(localStorage.debug);
-
-});
-require.register("LearnBoost-jsonp/index.js", function(exports, require, module){
-
-/**
- * Module dependencies
- */
-
-var debug = require('debug')('jsonp');
-
-/**
- * Module exports.
- */
-
-module.exports = jsonp;
-
-/**
- * Callback index.
- */
-
-var count = 0;
-
-/**
- * Noop function.
- */
-
-function noop(){};
-
-/**
- * JSONP handler
- *
- * Options:
- *  - param {String} qs parameter (`callback`)
- *  - timeout {Number} how long after a timeout error is emitted (`60000`)
- *
- * @param {String} url
- * @param {Object|Function} optional options / callback
- * @param {Function} optional callback
- */
-
-function jsonp(url, opts, fn){
-  if ('function' == typeof opts) {
-    fn = opts;
-    opts = {};
-  }
-
-  var opts = opts || {};
-  var param = opts.param || 'callback';
-  var timeout = null != opts.timeout ? opts.timeout : 60000;
-  var enc = encodeURIComponent;
-  var target = document.getElementsByTagName('script')[0];
-  var script;
-  var timer;
-
-  // generate a unique id for this request
-  var id = count++;
-
-  if (timeout) {
-    timer = setTimeout(function(){
-      cleanup();
-      fn && fn(new Error('Timeout'));
-    }, timeout);
-  }
-
-  function cleanup(){
-    target.parentNode.removeChild(script);
-    window['__jp' + id] = noop;
-  }
-
-  window['__jp' + id] = function(data){
-    debug('jsonp got', data);
-    if (timer) clearTimeout(timer);
-    cleanup();
-    fn && fn(null, data);
-  };
-
-  // add qs component
-  url += (~url.indexOf('?') ? '&' : '?') + param + '=' + enc('__jp' + id + '');
-  url = url.replace('?&', '?');
-
-  debug('jsonp req "%s"', url);
-
-  // create script
-  script = document.createElement('script');
-  script.src = url;
-  target.parentNode.insertBefore(script, target);
-};
-
-});
-require.register("matthewp-text/index.js", function(exports, require, module){
-module.exports = function (el, val) {
-  if (val == null) {
-    return el.textContent || el.innerText;
-  }
-
-  return el.textContent && (el.textContent = val)
-    || (el.innerText = val);
-};
-
-});
-require.register("manuelstofer-each/index.js", function(exports, require, module){
-"use strict";
-
-var nativeForEach = [].forEach;
-
-// Underscore's each function
-module.exports = function (obj, iterator, context) {
-    if (obj == null) return;
-    if (nativeForEach && obj.forEach === nativeForEach) {
-        obj.forEach(iterator, context);
-    } else if (obj.length === +obj.length) {
-        for (var i = 0, l = obj.length; i < l; i++) {
-            if (iterator.call(context, obj[i], i, obj) === {}) return;
-        }
-    } else {
-        for (var key in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                if (iterator.call(context, obj[key], key, obj) === {}) return;
-            }
-        }
-    }
-};
-
-});
-require.register("component-relative-date/index.js", function(exports, require, module){
-
-/**
- * Expose `relative`.
- */
-
-module.exports = relative;
-
-/**
- * Constants.
- */
-
-var second = 1000;
-var minute = 60 * second;
-var hour = 60 * minute;
-var day = 24 * hour;
-var week = 7 * day;
-var year = day * 365;
-var month = year / 12;
-
-/**
- * Return `date` in words relative to `other`
- * which defaults to now.
- *
- * @param {Date} date
- * @param {Date} other
- * @return {String}
- * @api public
- */
-
-function relative(date, other) {
-  other = other || new Date;
-  var ms = Math.abs(other - date);
-
-  if (ms < second) return '';
-
-  if (ms == second) return 'one second';
-  if (ms < minute) return Math.ceil(ms / second) + ' seconds';
-
-  if (ms == minute) return 'one minute';
-  if (ms < hour) return Math.ceil(ms / minute) + ' minutes';
-
-  if (ms == hour) return 'one hour';
-  if (ms < day) return Math.ceil(ms / hour) + ' hours';
-
-  if (ms == day) return 'one day';
-  if (ms < week) return Math.ceil(ms / day) + ' days';
-
-  if (ms == week) return 'one week';
-  if (ms < month) return Math.ceil(ms / week) + ' weeks';
-
-  if (ms == month) return 'one month';
-  if (ms < year) return Math.ceil(ms / month) + ' months';
-
-  if (ms == year) return 'one year';
-  return Math.round(ms / year) + ' years';
-}
-
-});
 require.register("component-jquery/index.js", function(exports, require, module){
 /*!
  * jQuery JavaScript Library v1.7.3pre
@@ -9931,6 +9613,327 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 })( window );
 
 });
+require.register("component-relative-date/index.js", function(exports, require, module){
+
+/**
+ * Expose `relative`.
+ */
+
+module.exports = relative;
+
+/**
+ * Constants.
+ */
+
+var second = 1000;
+var minute = 60 * second;
+var hour = 60 * minute;
+var day = 24 * hour;
+var week = 7 * day;
+var year = day * 365;
+var month = year / 12;
+
+/**
+ * Return `date` in words relative to `other`
+ * which defaults to now.
+ *
+ * @param {Date} date
+ * @param {Date} other
+ * @return {String}
+ * @api public
+ */
+
+function relative(date, other) {
+  other = other || new Date;
+  var ms = Math.abs(other - date);
+
+  if (ms < second) return '';
+
+  if (ms == second) return 'one second';
+  if (ms < minute) return Math.ceil(ms / second) + ' seconds';
+
+  if (ms == minute) return 'one minute';
+  if (ms < hour) return Math.ceil(ms / minute) + ' minutes';
+
+  if (ms == hour) return 'one hour';
+  if (ms < day) return Math.ceil(ms / hour) + ' hours';
+
+  if (ms == day) return 'one day';
+  if (ms < week) return Math.ceil(ms / day) + ' days';
+
+  if (ms == week) return 'one week';
+  if (ms < month) return Math.ceil(ms / week) + ' weeks';
+
+  if (ms == month) return 'one month';
+  if (ms < year) return Math.ceil(ms / month) + ' months';
+
+  if (ms == year) return 'one year';
+  return Math.round(ms / year) + ' years';
+}
+
+});
+
+require.register("visionmedia-debug/index.js", function(exports, require, module){
+if ('undefined' == typeof window) {
+  module.exports = require('./lib/debug');
+} else {
+  module.exports = require('./debug');
+}
+
+});
+require.register("visionmedia-debug/debug.js", function(exports, require, module){
+
+/**
+ * Expose `debug()` as the module.
+ */
+
+module.exports = debug;
+
+/**
+ * Create a debugger with the given `name`.
+ *
+ * @param {String} name
+ * @return {Type}
+ * @api public
+ */
+
+function debug(name) {
+  if (!debug.enabled(name)) return function(){};
+
+  return function(fmt){
+    var curr = new Date;
+    var ms = curr - (debug[name] || curr);
+    debug[name] = curr;
+
+    fmt = name
+      + ' '
+      + fmt
+      + ' +' + debug.humanize(ms);
+
+    // This hackery is required for IE8
+    // where `console.log` doesn't have 'apply'
+    window.console
+      && console.log
+      && Function.prototype.apply.call(console.log, console, arguments);
+  }
+}
+
+/**
+ * The currently active debug mode names.
+ */
+
+debug.names = [];
+debug.skips = [];
+
+/**
+ * Enables a debug mode by name. This can include modes
+ * separated by a colon and wildcards.
+ *
+ * @param {String} name
+ * @api public
+ */
+
+debug.enable = function(name) {
+  try {
+    localStorage.debug = name;
+  } catch(e){}
+
+  var split = (name || '').split(/[\s,]+/)
+    , len = split.length;
+
+  for (var i = 0; i < len; i++) {
+    name = split[i].replace('*', '.*?');
+    if (name[0] === '-') {
+      debug.skips.push(new RegExp('^' + name.substr(1) + '$'));
+    }
+    else {
+      debug.names.push(new RegExp('^' + name + '$'));
+    }
+  }
+};
+
+/**
+ * Disable debug output.
+ *
+ * @api public
+ */
+
+debug.disable = function(){
+  debug.enable('');
+};
+
+/**
+ * Humanize the given `ms`.
+ *
+ * @param {Number} m
+ * @return {String}
+ * @api private
+ */
+
+debug.humanize = function(ms) {
+  var sec = 1000
+    , min = 60 * 1000
+    , hour = 60 * min;
+
+  if (ms >= hour) return (ms / hour).toFixed(1) + 'h';
+  if (ms >= min) return (ms / min).toFixed(1) + 'm';
+  if (ms >= sec) return (ms / sec | 0) + 's';
+  return ms + 'ms';
+};
+
+/**
+ * Returns true if the given mode name is enabled, false otherwise.
+ *
+ * @param {String} name
+ * @return {Boolean}
+ * @api public
+ */
+
+debug.enabled = function(name) {
+  for (var i = 0, len = debug.skips.length; i < len; i++) {
+    if (debug.skips[i].test(name)) {
+      return false;
+    }
+  }
+  for (var i = 0, len = debug.names.length; i < len; i++) {
+    if (debug.names[i].test(name)) {
+      return true;
+    }
+  }
+  return false;
+};
+
+// persist
+
+if (window.localStorage) debug.enable(localStorage.debug);
+
+});
+require.register("LearnBoost-jsonp/index.js", function(exports, require, module){
+
+/**
+ * Module dependencies
+ */
+
+var debug = require('debug')('jsonp');
+
+/**
+ * Module exports.
+ */
+
+module.exports = jsonp;
+
+/**
+ * Callback index.
+ */
+
+var count = 0;
+
+/**
+ * Noop function.
+ */
+
+function noop(){};
+
+/**
+ * JSONP handler
+ *
+ * Options:
+ *  - param {String} qs parameter (`callback`)
+ *  - timeout {Number} how long after a timeout error is emitted (`60000`)
+ *
+ * @param {String} url
+ * @param {Object|Function} optional options / callback
+ * @param {Function} optional callback
+ */
+
+function jsonp(url, opts, fn){
+  if ('function' == typeof opts) {
+    fn = opts;
+    opts = {};
+  }
+
+  var opts = opts || {};
+  var param = opts.param || 'callback';
+  var timeout = null != opts.timeout ? opts.timeout : 60000;
+  var enc = encodeURIComponent;
+  var target = document.getElementsByTagName('script')[0];
+  var script;
+  var timer;
+
+  // generate a unique id for this request
+  var id = count++;
+
+  if (timeout) {
+    timer = setTimeout(function(){
+      cleanup();
+      fn && fn(new Error('Timeout'));
+    }, timeout);
+  }
+
+  function cleanup(){
+    target.parentNode.removeChild(script);
+    window['__jp' + id] = noop;
+  }
+
+  window['__jp' + id] = function(data){
+    debug('jsonp got', data);
+    if (timer) clearTimeout(timer);
+    cleanup();
+    fn && fn(null, data);
+  };
+
+  // add qs component
+  url += (~url.indexOf('?') ? '&' : '?') + param + '=' + enc('__jp' + id + '');
+  url = url.replace('?&', '?');
+
+  debug('jsonp req "%s"', url);
+
+  // create script
+  script = document.createElement('script');
+  script.src = url;
+  target.parentNode.insertBefore(script, target);
+};
+
+});
+require.register("manuelstofer-each/index.js", function(exports, require, module){
+"use strict";
+
+var nativeForEach = [].forEach;
+
+// Underscore's each function
+module.exports = function (obj, iterator, context) {
+    if (obj == null) return;
+    if (nativeForEach && obj.forEach === nativeForEach) {
+        obj.forEach(iterator, context);
+    } else if (obj.length === +obj.length) {
+        for (var i = 0, l = obj.length; i < l; i++) {
+            if (iterator.call(context, obj[i], i, obj) === {}) return;
+        }
+    } else {
+        for (var key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                if (iterator.call(context, obj[key], key, obj) === {}) return;
+            }
+        }
+    }
+};
+
+});
+require.register("matthewp-text/index.js", function(exports, require, module){
+module.exports = function (el, val) {
+  if (val == null) {
+    return el.textContent || el.innerText;
+  }
+
+  return el.textContent && (el.textContent = val)
+    || (el.innerText = val);
+};
+
+});
+
+require.alias("component-jquery/index.js", "undefined/deps/jquery/index.js");
+
+require.alias("component-relative-date/index.js", "undefined/deps/relative-date/index.js");
 
 
 require.alias("LearnBoost-jsonp/index.js", "undefined/deps/jsonp/index.js");
@@ -9940,11 +9943,8 @@ require.alias("visionmedia-debug/debug.js", "LearnBoost-jsonp/deps/debug/debug.j
 
 require.alias("LearnBoost-jsonp/index.js", "LearnBoost-jsonp/index.js");
 
-require.alias("matthewp-text/index.js", "undefined/deps/text/index.js");
-
 require.alias("manuelstofer-each/index.js", "undefined/deps/each/index.js");
 
-require.alias("component-relative-date/index.js", "undefined/deps/relative-date/index.js");
+require.alias("matthewp-text/index.js", "undefined/deps/text/index.js");
 
-require.alias("component-jquery/index.js", "undefined/deps/jquery/index.js");
 
