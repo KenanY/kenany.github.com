@@ -61,7 +61,7 @@
       item += ' &middot; <span class="time"><a href="' + repo.html_url + '/commits">' + relative(repo.pushed_at) + ' ago</a></span>';
       item += '</li>';
 
-      $(item).appendTo("#updated-repos");
+      $(item).appendTo('#updated-repos');
     });
   });
 }(this));
