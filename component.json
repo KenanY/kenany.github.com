@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "component/jquery": "*",
+    "component/dom": "*",
     "component/relative-date": "*",
     "component/simple-grid": "*",
     "LearnBoost/jsonp": "*",

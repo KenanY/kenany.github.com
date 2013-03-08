@@ -3,7 +3,7 @@
       text     = require('matthewp-text'),
       each     = require('manuelstofer-each'),
       relative = require('component-relative-date'),
-      $        = require('component-jquery');
+      $        = require('component-dom');
 
   var getRepoLang = function(repo) {
     if (repo.language) {
@@ -56,7 +56,7 @@
       return 0;
     });
 
-    $.each(repos.slice(0, 3), function(i, repo) {
+    each(repos.slice(0, 3), function(repo, i) {
       var item = '<li>';
       item += '<span class="name"><a href="' + repo.html_url + '">' + repo.name + '</a></span>';
       item += ' &middot; <span class="time"><a href="' + repo.html_url + '/commits">' + relative(repo.pushed_at) + ' ago</a></span>';
