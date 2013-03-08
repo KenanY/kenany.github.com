@@ -2,10 +2,18 @@
 
 List of GitHub repos.
 
-## Building
+## Development
+
+### Dependencies
+
+![component graph](https://f.cloud.github.com/assets/733364/238424/6ff6a9ba-8837-11e2-81fe-b4e703421825.png
+
+``` shell
+$ component install
+```
+
+### Building
 
 ``` shell
 $ component build
 ```
-
-Built files aren't ignored because GitHub needs them to publish the site.
