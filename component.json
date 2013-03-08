@@ -6,7 +6,6 @@
     "component/simple-grid": "*",
     "LearnBoost/jsonp": "*",
     "manuelstofer/each": "*",
-    "matthewp/text": "*",
     "necolas/normalize.css": "*"
   }
 }

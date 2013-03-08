@@ -1,6 +1,5 @@
 (function(window, undefined) {
   var jsonp    = require('LearnBoost-jsonp'),
-      text     = require('matthewp-text'),
       each     = require('manuelstofer-each'),
       relative = require('component-relative-date'),
       $        = require('component-dom');
@@ -17,7 +16,7 @@
   jsonp('https://api.github.com/users/KenanY/repos?type=public', function(err, data) {
     var repos = data.data;
 
-    text(document.getElementById('num-repos'), repos.length);
+    $('num-repos').text(repos.length);
 
     each(repos, function(repo, i) {
       repo.pushed_at = new Date(repo.pushed_at);

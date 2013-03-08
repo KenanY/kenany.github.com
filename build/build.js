@@ -1660,19 +1660,8 @@ module.exports = function (obj, iterator, context) {
 };
 
 });
-require.register("matthewp-text/index.js", function(exports, require, module){
-module.exports = function (el, val) {
-  if (val == null) {
-    return el.textContent || el.innerText;
-  }
 
-  return el.textContent && (el.textContent = val)
-    || (el.innerText = val);
-};
-
-});
-
-require.alias("component-dom/index.js", "undefined/deps/dom/index.js");
+require.alias("component-dom/index.js", "kenany.github.com/deps/dom/index.js");
 require.alias("component-type/index.js", "component-dom/deps/type/index.js");
 
 require.alias("component-event/index.js", "component-dom/deps/event/index.js");
@@ -1693,18 +1682,16 @@ require.alias("component-css/index.js", "component-dom/deps/css/index.js");
 
 require.alias("component-sort/index.js", "component-dom/deps/sort/index.js");
 
-require.alias("component-relative-date/index.js", "undefined/deps/relative-date/index.js");
+require.alias("component-relative-date/index.js", "kenany.github.com/deps/relative-date/index.js");
 
 
-require.alias("LearnBoost-jsonp/index.js", "undefined/deps/jsonp/index.js");
-require.alias("LearnBoost-jsonp/index.js", "undefined/deps/jsonp/index.js");
+require.alias("LearnBoost-jsonp/index.js", "kenany.github.com/deps/jsonp/index.js");
+require.alias("LearnBoost-jsonp/index.js", "kenany.github.com/deps/jsonp/index.js");
 require.alias("visionmedia-debug/index.js", "LearnBoost-jsonp/deps/debug/index.js");
 require.alias("visionmedia-debug/debug.js", "LearnBoost-jsonp/deps/debug/debug.js");
 
 require.alias("LearnBoost-jsonp/index.js", "LearnBoost-jsonp/index.js");
 
-require.alias("manuelstofer-each/index.js", "undefined/deps/each/index.js");
-
-require.alias("matthewp-text/index.js", "undefined/deps/text/index.js");
+require.alias("manuelstofer-each/index.js", "kenany.github.com/deps/each/index.js");
 
 
