@@ -1,11 +1,4 @@
 
-
-/**
- * hasOwnProperty.
- */
-
-var has = Object.prototype.hasOwnProperty;
-
 /**
  * Require the given path.
  *
@@ -82,10 +75,10 @@ require.resolve = function(path) {
 
   for (var i = 0; i < paths.length; i++) {
     var path = paths[i];
-    if (has.call(require.modules, path)) return path;
+    if (require.modules.hasOwnProperty(path)) return path;
   }
 
-  if (has.call(require.aliases, index)) {
+  if (require.aliases.hasOwnProperty(index)) {
     return require.aliases[index];
   }
 };
@@ -139,7 +132,7 @@ require.register = function(path, definition) {
  */
 
 require.alias = function(from, to) {
-  if (!has.call(require.modules, from)) {
+  if (!require.modules.hasOwnProperty(from)) {
     throw new Error('Failed to alias "' + from + '", it does not exist');
   }
   require.aliases[to] = from;
@@ -201,7 +194,7 @@ require.relative = function(parent) {
    */
 
   localRequire.exists = function(path) {
-    return has.call(require.modules, localRequire.resolve(path));
+    return require.modules.hasOwnProperty(localRequire.resolve(path));
   };
 
   return localRequire;
@@ -1662,6 +1655,7 @@ module.exports = function (obj, iterator, context) {
 });
 
 require.alias("component-dom/index.js", "kenany.github.com/deps/dom/index.js");
+require.alias("component-dom/index.js", "dom/index.js");
 require.alias("component-type/index.js", "component-dom/deps/type/index.js");
 
 require.alias("component-event/index.js", "component-dom/deps/event/index.js");
@@ -1683,15 +1677,18 @@ require.alias("component-css/index.js", "component-dom/deps/css/index.js");
 require.alias("component-sort/index.js", "component-dom/deps/sort/index.js");
 
 require.alias("component-relative-date/index.js", "kenany.github.com/deps/relative-date/index.js");
+require.alias("component-relative-date/index.js", "relative-date/index.js");
 
 
 require.alias("LearnBoost-jsonp/index.js", "kenany.github.com/deps/jsonp/index.js");
 require.alias("LearnBoost-jsonp/index.js", "kenany.github.com/deps/jsonp/index.js");
+require.alias("LearnBoost-jsonp/index.js", "jsonp/index.js");
 require.alias("visionmedia-debug/index.js", "LearnBoost-jsonp/deps/debug/index.js");
 require.alias("visionmedia-debug/debug.js", "LearnBoost-jsonp/deps/debug/debug.js");
 
 require.alias("LearnBoost-jsonp/index.js", "LearnBoost-jsonp/index.js");
 
 require.alias("manuelstofer-each/index.js", "kenany.github.com/deps/each/index.js");
+require.alias("manuelstofer-each/index.js", "each/index.js");
 
 
