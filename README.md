@@ -8,12 +8,12 @@ List of GitHub repos.
 
 ![component graph](https://f.cloud.github.com/assets/733364/238424/6ff6a9ba-8837-11e2-81fe-b4e703421825.png)
 
-``` shell
+``` bash
 $ component install
 ```
 
 ### Building
 
-``` shell
+``` bash
 $ component build
 ```
